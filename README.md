@@ -3,6 +3,20 @@
 dggridR: Discrete Global Grids for R
 ====================================
 
+***
+*Note*: This fork can be installed using either of: 
+
+```r
+remotes::install_github("SebKrantz/dggridR")
+
+install.packages("dggridR", 
+                 repos = c(ropensci = 'https://fastverse.r-universe.dev',
+                           CRAN = 'https://cloud.r-project.org'))
+```
+
+
+***
+
 _Spatial Analysis Done Right_
 
 You want to do spatial statistics, and it's going to involve binning.
