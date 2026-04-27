@@ -136,8 +136,8 @@ bridge, including:
 - Updated the bundled DGGRID engine from v7 to v9.0b and re-architected
   the Rcpp bridge
 - Fixed numeric precision issues on Apple Silicon
-- Replaced dplyr/rlang/sp with collapse/s2, yielding significant
-  performance gains
+- Replaced dplyr/rlang/sp with collapse/s2 and native C routine for grid
+  materialization, yielding significant performance gains
 - Added aperture-7 grids (ISEA7H, FULLER7H) and mixed-aperture grids
   (ISEA43H, FULLER43H)
 - Added

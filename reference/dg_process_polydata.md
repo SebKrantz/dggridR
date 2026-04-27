@@ -1,7 +1,6 @@
 # Load a KML file
 
-Convert data from internal dggrid functions into something useful: an sp
-object or a data frame
+Convert data from internal dggrid functions into an sf object.
 
 ## Usage
 
