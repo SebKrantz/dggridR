@@ -228,14 +228,7 @@ to your data if you didn’t use this package :-)
 
 # Handle cells that cross 180 degrees
 wrapped_grid = st_wrap_dateline(grid, options = c("WRAPDATELINE=YES","DATELINEOFFSET=180"), quiet = TRUE)
-```
 
-    ## Warning in CPL_wrap_dateline(st_geometry(x), options, quiet): GDAL Error 1:
-    ## IllegalArgumentException: Points of LinearRing do not form a closed linestring
-    ## Warning in CPL_wrap_dateline(st_geometry(x), options, quiet): GDAL Error 1:
-    ## IllegalArgumentException: Points of LinearRing do not form a closed linestring
-
-``` r
 ggplot() +
     geom_polygon(data=countries, aes(x=long, y=lat, group=group), fill=NA, color="black")   +
     geom_sf     (data=wrapped_grid, aes(fill=count), color=alpha("white", 0.4)) +
@@ -573,7 +566,7 @@ c(
 ```
 
     ## sparse  dense 
-    ##   2528   7348
+    ##   2528  13328
 
 ### Random Grid Orientation
 

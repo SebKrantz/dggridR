@@ -484,13 +484,9 @@ to your data if you didn’t use this package :-)</p>
 <code class="sourceCode R"><span><span class="co">#Plot everything on a flat map</span></span>
 <span></span>
 <span><span class="co"># Handle cells that cross 180 degrees</span></span>
-<span><span class="va">wrapped_grid</span> <span class="op">=</span> <span class="fu">st_wrap_dateline</span><span class="op">(</span><span class="va">grid</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WRAPDATELINE=YES"</span>,<span class="st">"DATELINEOFFSET=180"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in CPL_wrap_dateline(st_geometry(x), options, quiet): GDAL Error 1:</span></span>
-<span><span class="co">## IllegalArgumentException: Points of LinearRing do not form a closed linestring</span></span>
-<span><span class="co">## Warning in CPL_wrap_dateline(st_geometry(x), options, quiet): GDAL Error 1:</span></span>
-<span><span class="co">## IllegalArgumentException: Points of LinearRing do not form a closed linestring</span></span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="va">wrapped_grid</span> <span class="op">=</span> <span class="fu">st_wrap_dateline</span><span class="op">(</span><span class="va">grid</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WRAPDATELINE=YES"</span>,<span class="st">"DATELINEOFFSET=180"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_polygon</span><span class="op">(</span>data<span class="op">=</span><span class="va">countries</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>, fill<span class="op">=</span><span class="cn">NA</span>, color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span>   <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span>     <span class="op">(</span>data<span class="op">=</span><span class="va">wrapped_grid</span>, <span class="fu">aes</span><span class="op">(</span>fill<span class="op">=</span><span class="va">count</span><span class="op">)</span>, color<span class="op">=</span><span class="fu">alpha</span><span class="op">(</span><span class="st">"white"</span>, <span class="fl">0.4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_point</span>  <span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">cellcenters</span><span class="op">$</span><span class="va">lon_deg</span>, y<span class="op">=</span><span class="va">cellcenters</span><span class="op">$</span><span class="va">lat_deg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -508,7 +504,7 @@ degrees.
 -->
 <p>You can also write out a KML file with your data included for
 displaying in, say, Google Earth:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Get the grid cell boundaries for the whole Earth using this dggs in a form</span></span>
@@ -530,7 +526,7 @@ distributed on the Earth. dggridR provides two possible ways to
 accomplish this. The conceptually simplest is to choose <code>N</code>
 uniformly distributed lat-long pairs and retrieve their associated grid
 cells:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Include libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
@@ -566,7 +562,7 @@ cells:</p>
 <span><span class="co">#Get the hexes for each of these cells</span></span>
 <span><span class="va">gridfilename</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>,<span class="va">df</span><span class="op">$</span><span class="va">cell</span><span class="op">)</span></span></code></pre></div>
 <p>The resulting distribution of cells appears as follows:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Get the grid in a more convenient format</span></span>
 <span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>,<span class="va">df</span><span class="op">$</span><span class="va">cell</span><span class="op">)</span></span>
 <span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_wrap_dateline</a></span><span class="op">(</span><span class="va">grid</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WRAPDATELINE=YES"</span>,<span class="st">"DATELINEOFFSET=180"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -590,7 +586,7 @@ accomplish this. The easiest way to do this is to note that grid cells
 are labeled from 1 to <code>M</code>, where <code>M</code> is the
 largest cell id at the resolution in question. Therefore, we can sample
 cell ids and generate a grid accordingly.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Include libraries</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
@@ -613,7 +609,7 @@ cell ids and generate a grid accordingly.</p>
 <span><span class="va">cells</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">maxcell</span>, <span class="va">N</span>, replace<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co">#Choose random cells</span></span>
 <span><span class="va">grid</span>    <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>,<span class="va">cells</span><span class="op">)</span>           <span class="co">#Get grid</span></span></code></pre></div>
 <p>The resulting distribution of cells appears as follows:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Get the grid in a more convenient format</span></span>
 <span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>,<span class="va">df</span><span class="op">$</span><span class="va">cell</span><span class="op">)</span></span>
 <span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_wrap_dateline</a></span><span class="op">(</span><span class="va">grid</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WRAPDATELINE=YES"</span>,<span class="st">"DATELINEOFFSET=180"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -634,7 +630,7 @@ cell ids and generate a grid accordingly.</p>
 <p>Sometimes you want to use a grid in software other than R. To
 facilitate this, the grid generation commands include the
 <code>savegrid</code> argument, as demonstrated below.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span><span class="co">#Generate a global grid whose cells are ~100,000 miles^2</span></span>
 <span><span class="va">dggs</span>         <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgconstruct.html">dgconstruct</a></span><span class="op">(</span>area<span class="op">=</span><span class="fl">100000</span>, metric<span class="op">=</span><span class="cn">FALSE</span>, resround<span class="op">=</span><span class="st">'nearest'</span><span class="op">)</span></span>
@@ -644,7 +640,7 @@ facilitate this, the grid generation commands include the
 <div class="section level3">
 <h3 id="get-a-grid-that-covers-south-africa">Get a grid that covers South Africa<a class="anchor" aria-label="anchor" href="#get-a-grid-that-covers-south-africa"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Generate a dggs specifying an intercell spacing of ~25 miles</span></span>
@@ -672,7 +668,7 @@ their grid cells and returns the grid geometry as an sf object,
 optionally with a <code>count</code> column showing how many points fell
 in each cell. <code><a href="../reference/dgbin_points.html">dgbin_points()</a></code> skips the geometry and returns
 a plain data frame of per-cell statistics (count, mean, total).</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dgquakes</span><span class="op">)</span></span>
@@ -684,7 +680,7 @@ a plain data frame of per-cell statistics (count, mean, total).</p>
 <span></span>
 <span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span></span>
 <span><span class="va">wrapped</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_wrap_dateline</a></span><span class="op">(</span><span class="va">grid</span>, options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WRAPDATELINE=YES"</span>,<span class="st">"DATELINEOFFSET=180"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_polygon</span><span class="op">(</span>data<span class="op">=</span><span class="va">countries</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>, fill<span class="op">=</span><span class="cn">NA</span>, color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data<span class="op">=</span><span class="va">wrapped</span>, <span class="fu">aes</span><span class="op">(</span>fill<span class="op">=</span><span class="va">count</span><span class="op">)</span>, color<span class="op">=</span><span class="fu">alpha</span><span class="op">(</span><span class="st">"white"</span>, <span class="fl">0.4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -693,7 +689,7 @@ a plain data frame of per-cell statistics (count, mean, total).</p>
 <p><img src="dggridR_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="576"></p>
 <p><code><a href="../reference/dgbin_points.html">dgbin_points()</a></code> is useful when you only need the
 aggregated numbers rather than the geometry:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bins</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgbin_points.html">dgbin_points</a></span><span class="op">(</span><span class="va">dggs</span>, <span class="va">dgquakes</span><span class="op">$</span><span class="va">lon</span>, <span class="va">dgquakes</span><span class="op">$</span><span class="va">lat</span>, output_count <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bins</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   seqnum count</span></span>
@@ -709,7 +705,7 @@ aggregated numbers rather than the geometry:</p>
 </h3>
 <p><code><a href="../reference/dgneighbors.html">dgneighbors()</a></code> returns the 6 adjacent cells for each
 hexagonal cell (not supported for triangular grids).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dggs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgconstruct.html">dgconstruct</a></span><span class="op">(</span>res <span class="op">=</span> <span class="fl">2</span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -721,7 +717,7 @@ hexagonal cell (not supported for triangular grids).</p>
 <span><span class="va">all_cells</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">center_cell</span>, <span class="va">nbrs</span><span class="op">$</span><span class="va">neighbor</span><span class="op">)</span></span>
 <span><span class="va">grid</span>      <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>, <span class="va">all_cells</span><span class="op">)</span></span>
 <span><span class="va">grid</span><span class="op">$</span><span class="va">role</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">seqnum</span> <span class="op">==</span> <span class="va">center_cell</span>, <span class="st">"centre"</span>, <span class="st">"neighbour"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data<span class="op">=</span><span class="va">grid</span>, <span class="fu">aes</span><span class="op">(</span>fill<span class="op">=</span><span class="va">role</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">scale_fill_manual</span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>centre <span class="op">=</span> <span class="st">"#E41A1C"</span>, neighbour <span class="op">=</span> <span class="st">"#377EB8"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -735,7 +731,7 @@ hexagonal cell (not supported for triangular grids).</p>
 resolution that are contained within each input cell.
 <code><a href="../reference/dgparent.html">dgparent()</a></code> returns the coarser-resolution cell that
 contains each input cell. Both require a hexagonal grid.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dggs_parent</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgconstruct.html">dgconstruct</a></span><span class="op">(</span>res <span class="op">=</span> <span class="fl">3</span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -747,7 +743,7 @@ contains each input cell. Both require a hexagonal grid.</p>
 <span><span class="co"># Visualise the parent boundary and its child cells</span></span>
 <span><span class="va">grid_parent</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs_parent</span>, <span class="va">parent_cell</span><span class="op">)</span></span>
 <span><span class="va">grid_child</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs_child</span>, <span class="va">chld</span><span class="op">$</span><span class="va">child</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data<span class="op">=</span><span class="va">grid_child</span>,  fill<span class="op">=</span><span class="fu">alpha</span><span class="op">(</span><span class="st">"#377EB8"</span>, <span class="fl">0.5</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_sf</span><span class="op">(</span>data<span class="op">=</span><span class="va">grid_parent</span>, fill<span class="op">=</span><span class="cn">NA</span>, color<span class="op">=</span><span class="st">"#E41A1C"</span>, linewidth<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
@@ -756,7 +752,7 @@ contains each input cell. Both require a hexagonal grid.</p>
 <p>Round-tripping via <code><a href="../reference/dgparent.html">dgparent()</a></code> confirms that interior
 children map back to their parent (boundary children may be shared with
 a neighbouring cell):</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prnt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgparent.html">dgparent</a></span><span class="op">(</span><span class="va">dggs_child</span>, <span class="va">chld</span><span class="op">$</span><span class="va">child</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">prnt</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   seqnum parent</span></span>
@@ -775,20 +771,20 @@ a neighbouring cell):</p>
 along each cell edge. The default (<code>densify=0</code>) uses only the
 corner vertices; higher values add intermediate points and produce
 smoother curves when the cells are displayed in a curved projection.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dggs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgconstruct.html">dgconstruct</a></span><span class="op">(</span>res <span class="op">=</span> <span class="fl">2</span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">g0</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgearthgrid.html">dgearthgrid</a></span><span class="op">(</span><span class="va">dggs</span>, densify <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>  <span class="co"># corners only</span></span>
 <span><span class="va">g5</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgearthgrid.html">dgearthgrid</a></span><span class="op">(</span><span class="va">dggs</span>, densify <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>  <span class="co"># 5 extra vertices per edge</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Vertex counts increase substantially with densification</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  sparse <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html" class="external-link">lengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">g0</span><span class="op">)</span>, <span class="fu">sf</span><span class="fu">::</span><span class="va"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  dense  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html" class="external-link">lengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">g5</span><span class="op">)</span>, <span class="fu">sf</span><span class="fu">::</span><span class="va"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html" class="external-link">st_coordinates</a></span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## sparse  dense </span></span>
-<span><span class="co">##   2528   7348</span></span></code></pre>
+<span><span class="co">##   2528  13328</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="random-grid-orientation">Random Grid Orientation<a class="anchor" aria-label="anchor" href="#random-grid-orientation"></a>
@@ -799,13 +795,13 @@ out-of-the-way locations. Pass <code>orient = "RANDOM"</code> to
 orientation, which is useful for sensitivity analyses or Monte Carlo
 studies. Use <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed()</a></code> before the call for
 reproducibility.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
 <span><span class="va">dggs_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgconstruct.html">dgconstruct</a></span><span class="op">(</span>res <span class="op">=</span> <span class="fl">3</span>, orient <span class="op">=</span> <span class="st">"RANDOM"</span>, show_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">gr</span>     <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dgearthgrid.html">dgearthgrid</a></span><span class="op">(</span><span class="va">dggs_r</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">countries</span> <span class="op">&lt;-</span> <span class="fu">map_data</span><span class="op">(</span><span class="st">"world"</span><span class="op">)</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">geom_polygon</span><span class="op">(</span>data<span class="op">=</span><span class="va">countries</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>, fill<span class="op">=</span><span class="cn">NA</span>, color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span></span>
