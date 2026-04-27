@@ -48,6 +48,8 @@
 <li>New <code>dgbin_points(dggs, lon, lat, values)</code> aggregates point data into grid cells, returning per-cell count, mean, and/or total as a data frame.</li>
 <li>
 <code><a href="../reference/dgearthgrid.html">dgearthgrid()</a></code> and <code><a href="../reference/dgcellstogrid.html">dgcellstogrid()</a></code> gain a <code>densify</code> parameter to insert extra vertices along cell edges for smoother boundaries.</li>
+<li>
+<code><a href="../reference/dgearthgrid.html">dgearthgrid()</a></code> and <code><a href="../reference/dgcellstogrid.html">dgcellstogrid()</a></code> now materialize sf polygon grids through a native C implementation using R’s C API, preserving DGGRID ring order and avoiding the previous s2/collapse polygon construction path. Illustrative conversion timings for full-earth grids improved from 0.022s to 0.001s at res 5 (~22x), 0.072s to 0.002s at res 6 (~36x), 0.284s to 0.005s at res 7 (~57x), 0.924s to 0.016s at res 8 (~58x), and 3.854s to 0.050s at res 9 (~77x).</li>
 <li>pkgdown site added at <a href="https://sebkrantz.github.io/dggridR/" class="uri">https://sebkrantz.github.io/dggridR/</a>.</li>
 </ul></div>
     <div class="section level2">
