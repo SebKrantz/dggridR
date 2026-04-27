@@ -29,6 +29,22 @@ adjacent cell ID).
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=3)
-nbrs <- dgneighbors(dggs, c(1, 2, 3))
+dgneighbors(dgconstruct(res=3), c(1, 2, 3))
+#>    seqnum neighbor
+#> 1       1       34
+#> 2       1       61
+#> 3       1       88
+#> 4       1      115
+#> 5       1        7
+#> 6       2        8
+#> 7       2        5
+#> 8       2      133
+#> 9       2      136
+#> 10      2      250
+#> 11      3        9
+#> 12      3        6
+#> 13      3      124
+#> 14      3      127
+#> 15      3      133
+#> 16      3        5
 ```

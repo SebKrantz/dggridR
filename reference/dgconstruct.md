@@ -127,6 +127,20 @@ Returns a dggs object which can be passed to other dggridR functions
 ``` r
 library(dggridR)
 dggs <- dgconstruct(res=20)
+str(dggs)
+#> List of 12
+#>  $ pole_lon_deg      : num 11.2
+#>  $ pole_lat_deg      : num 58.3
+#>  $ azimuth_deg       : num 0
+#>  $ aperture          : num 3
+#>  $ aperture_type     : chr "PURE"
+#>  $ num_aperture_4_res: int 0
+#>  $ isMixed43         : logi FALSE
+#>  $ numAp4            : int 0
+#>  $ res               : num 20
+#>  $ topology          : chr "HEXAGON"
+#>  $ projection        : chr "ISEA"
+#>  $ precision         : num 7
 
 dggs <- dgconstruct(area=5,metric=FALSE)
 #> Resolution: 14, Area (mi^2): 6.62642775724281, Spacing (mi): 2.0040855349603, CLS (mi): 2.28965624454932

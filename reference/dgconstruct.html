@@ -167,6 +167,20 @@ Default=11.25.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-barnes/dggridR/" class="external-link">dggridR</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dggs</span> <span class="op">&lt;-</span> <span class="fu">dgconstruct</span><span class="op">(</span>res<span class="op">=</span><span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">dggs</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> List of 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ pole_lon_deg      : num 11.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ pole_lat_deg      : num 58.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ azimuth_deg       : num 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ aperture          : num 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ aperture_type     : chr "PURE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ num_aperture_4_res: int 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ isMixed43         : logi FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ numAp4            : int 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ res               : num 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ topology          : chr "HEXAGON"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ projection        : chr "ISEA"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ precision         : num 7</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">dggs</span> <span class="op">&lt;-</span> <span class="fu">dgconstruct</span><span class="op">(</span>area<span class="op">=</span><span class="fl">5</span>,metric<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Resolution: 14, Area (mi^2): 6.62642775724281, Spacing (mi): 2.0040855349603, CLS (mi): 2.28965624454932</span>

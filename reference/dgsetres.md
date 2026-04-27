@@ -30,6 +30,41 @@ Returns a dggs object which can be passed to other dggridR functions
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=20)
-dggs <- dgsetres(dggs,10)
+dgsetres(dgconstruct(res=20), 10)
+#> $pole_lon_deg
+#> [1] 11.25
+#> 
+#> $pole_lat_deg
+#> [1] 58.28253
+#> 
+#> $azimuth_deg
+#> [1] 0
+#> 
+#> $aperture
+#> [1] 3
+#> 
+#> $aperture_type
+#> [1] "PURE"
+#> 
+#> $num_aperture_4_res
+#> [1] 0
+#> 
+#> $isMixed43
+#> [1] FALSE
+#> 
+#> $numAp4
+#> [1] 0
+#> 
+#> $res
+#> [1] 10
+#> 
+#> $topology
+#> [1] "HEXAGON"
+#> 
+#> $projection
+#> [1] "ISEA"
+#> 
+#> $precision
+#> [1] 7
+#> 
 ```

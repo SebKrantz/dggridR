@@ -23,6 +23,5 @@ is misspecified
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=20)
-dgverify(dggs)
+dgverify(dgconstruct(res=20))
 ```

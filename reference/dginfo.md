@@ -23,8 +23,7 @@ No return. All info is printed to the screen.
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=20)
-dginfo(dggs)
+dginfo(dgconstruct(res=20))
 #>    res            cells                area_km      spacing_km          cls_km
 #> 1    0               12 51006562.1724088639021 7053.6524314108 8199.5003701020
 #> 2    1               32 17002187.3908029571176 4072.4281300451 4678.9698717297

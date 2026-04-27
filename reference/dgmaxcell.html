@@ -74,6 +74,20 @@ override the resolution.</p></dd>
 <span class="r-in"><span><span class="va">maxcell</span> <span class="op">&lt;-</span> <span class="fu">dgmaxcell</span><span class="op">(</span><span class="va">dggs</span><span class="op">)</span>                     <span class="co">#Get maximum cell id</span></span></span>
 <span class="r-in"><span><span class="va">cells</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">maxcell</span>, <span class="va">N</span>, replace<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> <span class="co">#Choose random cells</span></span></span>
 <span class="r-in"><span><span class="va">grid</span>    <span class="op">&lt;-</span> <span class="fu"><a href="dgcellstogrid.html">dgcellstogrid</a></span><span class="op">(</span><span class="va">dggs</span>,<span class="va">cells</span><span class="op">)</span> <span class="co">#Get grid</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: -152.1121 ymin: -46.44662 xmax: 138.45 ymax: 44.09063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   seqnum                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    153 POLYGON ((-107.2003 -19.871...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     74 POLYGON ((1.444112 -33.8171...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    228 POLYGON ((122.6695 -15.5462...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    146 POLYGON ((-135.3153 -18.547...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    122 POLYGON ((129.5337 44.09063...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     49 POLYGON ((-30.28484 15.9045...</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

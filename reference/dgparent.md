@@ -31,6 +31,8 @@ parent cell ID at resolution - 1).
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=4)
-prnt <- dgparent(dggs, c(1, 2))
+dgparent(dgconstruct(res=4), c(1, 2))
+#>   seqnum parent
+#> 1      1      1
+#> 2      2      2
 ```

@@ -31,6 +31,18 @@ child cell ID at resolution + 1).
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=3)
-chld <- dgchildren(dggs, c(1, 2))
+dgchildren(dgconstruct(res=3), c(1, 2))
+#>    seqnum child
+#> 1       1     1
+#> 2       1    91
+#> 3       1   172
+#> 4       1   253
+#> 5       1   334
+#> 6       1    10
+#> 7       2     2
+#> 8       2    11
+#> 9       2    12
+#> 10      2     3
+#> 11      2   406
+#> 12      2   739
 ```

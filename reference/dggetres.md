@@ -24,8 +24,7 @@ cells. All values are in kilometres.
 
 ``` r
 library(dggridR)
-dggs <- dgconstruct(res=20)
-dggetres(dggs)
+dggetres(dgconstruct(res=20))
 #>    res        cells      area_km   spacing_km       cls_km
 #> 1    0 1.200000e+01 5.100656e+07 7.053652e+03 8.199500e+03
 #> 2    1 3.200000e+01 1.700219e+07 4.072428e+03 4.678970e+03

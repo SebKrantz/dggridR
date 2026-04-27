@@ -96,6 +96,20 @@ for coarse-resolution cells. Default: 0.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#Get grid cells for the earthquakes identified</span></span></span>
 <span class="r-in"><span><span class="va">grid</span>          <span class="op">&lt;-</span> <span class="fu">dgcellstogrid</span><span class="op">(</span><span class="va">dggs</span>, <span class="va">dgquakes</span><span class="op">$</span><span class="va">cell</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 6 features and 1 field</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: POLYGON</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: -175.3344 ymin: -79.84138 xmax: 179.5164 ymax: 59.86614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geodetic CRS:  WGS 84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   seqnum                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    136 POLYGON ((178.3157 59.75856...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    143 POLYGON ((-125.8005 -8.0549...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    248 POLYGON ((172.0247 13.92413...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     62 POLYGON ((-6.675932 -6.3354...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    185 POLYGON ((-93.47677 -75.488...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     14 POLYGON ((-126.2506 50.7134...</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
