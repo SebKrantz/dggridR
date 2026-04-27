@@ -314,30 +314,43 @@
 <div class="section level2">
 <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>
 </h2>
-<p>The code in the ‘src’ directory is based off of <a href="https://github.com/sahrk/DGGRID" class="external-link">DGGRIDv9.0b</a> by Kevin Sahr.</p>
-<p>However, Richard Barnes has made some significant alterations. These include:</p>
+<p>The <code>src/</code> directory contains a vendored copy of <a href="https://github.com/SebKrantz/DGGRID" class="external-link">DGGRID v9.0b</a> by Kevin Sahr, maintained as a fork at <a href="https://github.com/SebKrantz/DGGRID" class="external-link">SebKrantz/DGGRID</a>.</p>
+<p><strong>Richard Barnes</strong> built the original R package and hand-written Rcpp bridge, including:</p>
 <ul>
-<li>Replacement of gpclib with clipper, thus making DGGRID into FLOSS software available for both commercial and non-commercial use without restriction</li>
-<li>Restructuring and simplifying all of the makefiles to enable compilation in R</li>
+<li>Replacement of gpclib with clipper, making DGGRID fully FLOSS</li>
+<li>Restructuring of makefiles and include paths to enable compilation in R</li>
 <li>Direct inclusion of the shapelib library</li>
 <li>Addition of the SEQTOPOLY option under the GENERATE_GRID faculty</li>
-<li>Alterations that enable the code to be compiled under GCC6</li>
-<li>Alterations that make the code ISO C conformant</li>
-<li>Alterations to resolve -pedantic and -Wall warnings</li>
+<li>Fixes for GCC 6, ISO C conformance, and -Wall/-pedantic warnings</li>
 </ul>
-<p>The package relies on several libraries, as noted in the <strong>Licensing</strong> section below.</p>
+<p><strong>Sebastian Krantz</strong> has made the following additions (v3.1.0 onward):</p>
+<ul>
+<li>Updated the bundled DGGRID engine from v7 to v9.0b and re-architected the Rcpp bridge</li>
+<li>Fixed numeric precision issues on Apple Silicon</li>
+<li>Replaced dplyr/rlang/sp with collapse/s2, yielding significant performance gains</li>
+<li>Added aperture-7 grids (ISEA7H, FULLER7H) and mixed-aperture grids (ISEA43H, FULLER43H)</li>
+<li>Added <code><a href="reference/dgneighbors.html">dgneighbors()</a></code>, <code><a href="reference/dgchildren.html">dgchildren()</a></code>, <code><a href="reference/dgparent.html">dgparent()</a></code> for cell-relationship queries</li>
+<li>Added <code><a href="reference/dgpoints_to_cells.html">dgpoints_to_cells()</a></code> and <code><a href="reference/dgbin_points.html">dgbin_points()</a></code> for point aggregation</li>
+<li>Added <code>densify</code> parameter to grid-materialization functions</li>
+<li>Added <code>orient = "RANDOM"</code> to <code><a href="reference/dgconstruct.html">dgconstruct()</a></code> for random icosahedral orientation</li>
+</ul>
+<p>The package relies on several bundled libraries, as noted in the <strong>Licensing</strong> section below.</p>
 </div>
 <div class="section level2">
 <h2 id="licensing">Licensing<a class="anchor" aria-label="anchor" href="#licensing"></a>
 </h2>
-<p>This package uses the following libraries:</p>
+<p>This package is released under the <strong>GNU Affero General Public License v3 or later</strong> (AGPL ≥ 3), as stated in <code>LICENSE.md</code>.</p>
+<p>The following bundled libraries in <code>src/</code> have their own licenses:</p>
 <ul>
-<li><p>clipper: The clipper library has been released under the Boostv1 license by Angus Johnson</p></li>
-<li><p>dggrid: Kevin Sahr has released dggrid as a “public domain software program”</p></li>
-<li><p>proj4lib: Gerald Evenden has released this code into the public domain. More recent versions of the library, not used here, are under an MIT-style license.</p></li>
-<li><p>shapelib: Frank Warmerdam has released shapelib under an MIT-style license. There is also an LGPL licensing option which I have chosen not to use.</p></li>
+<li>
+<strong>clipper</strong>: Boost Software License v1.0 (Angus Johnson)</li>
+<li>
+<strong>dggrid</strong>: Released as public domain software by Kevin Sahr</li>
+<li>
+<strong>proj4lib</strong>: Released into the public domain by Gerald Evenden</li>
+<li>
+<strong>shapelib</strong>: MIT-style license (Frank Warmerdam)</li>
 </ul>
-<p>This package, and all code and documentation not otherwise mentioned above (essentially anything outside the <code>src/</code> directory of this package) are released under the MIT (Expat) license, as stated in the <code>LICENSE</code> file. The <code>LICENCE</code> file exists for use with CRAN.</p>
 </div>
 <div class="section level2">
 <h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
@@ -349,7 +362,7 @@
 </h2>
 <p>Please cite this package as:</p>
 <blockquote>
-<p>Richard Barnes, Kevin Sahr, and Sebastian Krantz (2026). dggridR: Discrete Global Grids for R. R package version 4.0.0. “<a href="https://github.com/r-barnes/dggridR/" class="external-link uri">https://github.com/r-barnes/dggridR/</a>” <a href="doi:10.5281/zenodo.1322866" class="uri">doi:10.5281/zenodo.1322866</a></p>
+<p>Richard Barnes, Kevin Sahr, and Sebastian Krantz (2026). dggridR: Discrete Global Grids for R. R package version 4.1.0. <a href="https://sebkrantz.github.io/dggridR/" class="uri">https://sebkrantz.github.io/dggridR/</a> <a href="doi:10.5281/zenodo.1322866" class="uri">doi:10.5281/zenodo.1322866</a></p>
 </blockquote>
 </div>
 </div>
