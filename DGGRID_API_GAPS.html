@@ -39,22 +39,22 @@
 <hr><div class="section level2">
 <h2 id="id_1-operation-modes">1. Operation Modes<a class="anchor" aria-label="anchor" href="#id_1-operation-modes"></a></h2>
 <p>DGGRID has six <code>dggrid_operation</code> modes. The R package partially covers two of them.</p>
-<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr class="header"><th>DGGRID Mode</th>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th>DGGRID Mode</th>
 <th>R Coverage</th>
-</tr></thead><tbody><tr class="odd"><td><code>GENERATE_GRID</code></td>
+</tr></thead><tbody><tr><td><code>GENERATE_GRID</code></td>
 <td>Partial — whole-earth (<code>dgearthgrid</code>) and by-SEQNUM (<code>dgcellstogrid</code>). Region clipping uses an approximate point-sampling workaround, not native polygon intersection.</td>
-</tr><tr class="even"><td><code>GENERATE_GRID_FROM_POINTS</code></td>
+</tr><tr><td><code>GENERATE_GRID_FROM_POINTS</code></td>
 <td>
 <strong>None.</strong> Given a set of lon/lat points, generate the cells that contain them and optionally return per-cell point counts. The R user must call <code><a href="reference/dgGEO_to_SEQNUM.html">dgGEO_to_SEQNUM()</a></code> + <code><a href="reference/dgcellstogrid.html">dgcellstogrid()</a></code> separately; this loses the native <code>output_count</code> field and GDAL input support.</td>
-</tr><tr class="odd"><td><code>BIN_POINT_VALS</code></td>
+</tr><tr><td><code>BIN_POINT_VALS</code></td>
 <td>
 <strong>None.</strong> Bins floating-point values associated with lon/lat points into DGG cells, outputting per-cell mean (<code>output_mean</code>), count (<code>output_count</code>), and/or total (<code>output_total</code>). Fundamental for gridded aggregation workflows.</td>
-</tr><tr class="even"><td><code>BIN_POINT_PRESENCE</code></td>
+</tr><tr><td><code>BIN_POINT_PRESENCE</code></td>
 <td>
 <strong>None.</strong> Presence/absence binning across multiple input classes. Each cell receives a binary vector indicating which classes appear in it, plus optional count and class-count fields.</td>
-</tr><tr class="odd"><td><code>TRANSFORM_POINTS</code></td>
+</tr><tr><td><code>TRANSFORM_POINTS</code></td>
 <td>Full — all 30 pairwise conversions between GEO, SEQNUM, Q2DI, Q2DD, PROJTRI, PLANE are exposed via <code>cwrapper.R</code>. HIERNDX input/output address type is not exposed (see §4).</td>
-</tr><tr class="even"><td><code>OUTPUT_STATS</code></td>
+</tr><tr><td><code>OUTPUT_STATS</code></td>
 <td>Partial — <code><a href="reference/dggetres.html">dggetres()</a></code> returns the same cell-count/area/spacing/CLS table, but uses the C++ <code>GridStat_*</code> functions directly, not the DGGRID metafile pipeline. No way to query stats for SEQUENCE/MIXED43 grids (see §2).</td>
 </tr></tbody></table><hr></div>
 <div class="section level2">
@@ -90,16 +90,16 @@
 <div class="section level2">
 <h2 id="id_4-hierarchical-indexing-hierndx-address-type">4. Hierarchical Indexing (HIERNDX Address Type)<a class="anchor" aria-label="anchor" href="#id_4-hierarchical-indexing-hierndx-address-type"></a></h2>
 <p>DGGRID v9.0b introduces hierarchical cell indices — compact integers that encode a cell’s position in the refinement tree:</p>
-<table class="table"><thead><tr class="header"><th>System</th>
+<table class="table"><thead><tr><th>System</th>
 <th>Parameter value</th>
 <th>Used by</th>
-</tr></thead><tbody><tr class="odd"><td>Z7</td>
+</tr></thead><tbody><tr><td>Z7</td>
 <td><code>hier_indexing_system_type = Z7</code></td>
 <td>IGEO7 preset</td>
-</tr><tr class="even"><td>ZOrder</td>
+</tr><tr><td>ZOrder</td>
 <td><code>ZORDER</code></td>
 <td>general aperture-4 grids</td>
-</tr><tr class="odd"><td>Z3</td>
+</tr><tr><td>Z3</td>
 <td><code>Z3</code></td>
 <td>aperture-3 grids</td>
 </tr></tbody></table><p>These enable: - Looking up the <strong>parent cell</strong> at a coarser resolution (<code>indexing_parent_output_type</code>). - Listing all <strong>children cells</strong> at a finer resolution (<code>indexing_children_output_type</code>). - Using <code>HIERNDX</code> as both input and output address type in <code>TRANSFORM_POINTS</code>.</p>
@@ -157,13 +157,13 @@
 <div class="section level2">
 <h2 id="id_8-earth-datum--radius">8. Earth Datum / Radius<a class="anchor" aria-label="anchor" href="#id_8-earth-datum--radius"></a></h2>
 <p><code>proj_datum</code> controls the earth model used for cell-area calculations:</p>
-<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr class="header"><th>Value</th>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th>Value</th>
 <th>Description</th>
-</tr></thead><tbody><tr class="odd"><td><code>WGS84_AUTHALIC_SPHERE</code></td>
+</tr></thead><tbody><tr><td><code>WGS84_AUTHALIC_SPHERE</code></td>
 <td>Default — equal-area sphere matching WGS84 (R uses this)</td>
-</tr><tr class="even"><td><code>WGS84_MEAN_SPHERE</code></td>
+</tr><tr><td><code>WGS84_MEAN_SPHERE</code></td>
 <td>Mean-radius WGS84 sphere</td>
-</tr><tr class="odd"><td><code>CUSTOM_SPHERE</code></td>
+</tr><tr><td><code>CUSTOM_SPHERE</code></td>
 <td>User-specified radius via <code>proj_datum_radius</code> (km)</td>
 </tr></tbody></table><p>R always uses the authalic sphere with no way to change it, which affects cell-area computations for applications requiring a different earth model.</p>
 <hr></div>
@@ -209,18 +209,18 @@
 <hr><div class="section level3">
 <h3 id="priority-1--aperture-7-and-mixed43-2122">Priority 1 — Aperture 7 and MIXED43 (§2.1–2.2)<a class="anchor" aria-label="anchor" href="#priority-1--aperture-7-and-mixed43-2122"></a></h3>
 <p><strong>Status: Implemented.</strong></p>
-<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr class="header"><th>Item</th>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th>Item</th>
 <th>Change</th>
-</tr></thead><tbody><tr class="odd"><td>Aperture 7 (ISEA7H, FULLER7H)</td>
+</tr></thead><tbody><tr><td>Aperture 7 (ISEA7H, FULLER7H)</td>
 <td>
 <code>dgconstruct(aperture=7)</code> accepted; <code><a href="reference/dgverify.html">dgverify()</a></code> allows <code>aperture ∈ {3,4,7}</code>
 </td>
-</tr><tr class="even"><td>MIXED43 (ISEA43H, FULLER43H)</td>
+</tr><tr><td>MIXED43 (ISEA43H, FULLER43H)</td>
 <td><code>dgconstruct(aperture_type='MIXED43', num_aperture_4_res=N)</code></td>
-</tr><tr class="odd"><td>C++ bridge</td>
+</tr><tr><td>C++ bridge</td>
 <td>
 <code>DgParams</code> extended with <code>isMixed43</code> / <code>numAp4</code>; threaded through <code>GridThing</code>, both generators, <code>Transformer</code>, and all 30 generated coordinate-conversion functions</td>
-</tr><tr class="even"><td><code>func_gen.py</code></td>
+</tr><tr><td><code>func_gen.py</code></td>
 <td>
 <code>proj_arg</code> extended with <code>("bool","isMixed43","FALSE")</code> and <code>("int","numAp4","0L")</code>; <code>dgproj_args</code> generation uses null-safe accessors for backward compatibility; output path bug fixed (<code>../../R/cwrapper.R</code> → <code>../R/cwrapper.R</code>)</td>
 </tr></tbody></table><p><strong>Remaining gaps:</strong> - Sequence aperture (<code>aperture_type = SEQUENCE</code>, preset PLANETRISK) — not implemented; requires <code>DgApSeq</code> string construction and a new R parameter. - SUPERFUND preset (MIXED43 + special cell-label numbering) — not implemented. - <code><a href="reference/dggetres.html">dggetres()</a></code> / <code>GridStat_*</code> functions still use the 7-arg constructor with fixed <code>isMixed43=false</code>; MIXED43 grid statistics cannot be queried via <code><a href="reference/dggetres.html">dggetres()</a></code>.</p>
@@ -228,13 +228,13 @@
 <div class="section level3">
 <h3 id="priority-2--point-aggregation-1-generate_grid_from_points-bin_point_vals">Priority 2 — Point Aggregation (§1: GENERATE_GRID_FROM_POINTS, BIN_POINT_VALS)<a class="anchor" aria-label="anchor" href="#priority-2--point-aggregation-1-generate_grid_from_points-bin_point_vals"></a></h3>
 <p><strong>Status: Implemented in pure R using existing bridge calls.</strong></p>
-<table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr class="header"><th>Function</th>
+<table class="table"><colgroup><col width="33%"><col width="33%"><col width="33%"></colgroup><thead><tr><th>Function</th>
 <th>Wraps</th>
 <th>Notes</th>
-</tr></thead><tbody><tr class="odd"><td><code>dgpoints_to_cells(dggs, lon, lat, return_count)</code></td>
+</tr></thead><tbody><tr><td><code>dgpoints_to_cells(dggs, lon, lat, return_count)</code></td>
 <td>GENERATE_GRID_FROM_POINTS</td>
 <td>Calls <code><a href="reference/dgGEO_to_SEQNUM.html">dgGEO_to_SEQNUM()</a></code> + <code><a href="reference/dgcellstogrid.html">dgcellstogrid()</a></code>; returns sf grid with optional <code>count</code> column</td>
-</tr><tr class="even"><td><code>dgbin_points(dggs, lon, lat, values, output_count, output_mean, output_total)</code></td>
+</tr><tr><td><code>dgbin_points(dggs, lon, lat, values, output_count, output_mean, output_total)</code></td>
 <td>BIN_POINT_VALS</td>
 <td>Pure collapse aggregation; returns a plain data frame (no geometry)</td>
 </tr></tbody></table><p><strong>Remaining gaps:</strong> - GDAL vector file input for points — not supported (R-only path). - <code>BIN_POINT_PRESENCE</code> (multi-class presence/absence binning) — not implemented. - <code>cell_output_control = OUTPUT_ALL</code> (emit empty cells) — the R implementation only returns occupied cells.</p>
@@ -249,11 +249,11 @@
 <div class="section level3">
 <h3 id="priority-4--hierarchical-children--parent-4-5">Priority 4 — Hierarchical Children / Parent (§4, §5)<a class="anchor" aria-label="anchor" href="#priority-4--hierarchical-children--parent-4-5"></a></h3>
 <p><strong>Status: Implemented via <code>DgDiscTopoRFS</code> public API (no HIERNDX address type).</strong></p>
-<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr class="header"><th>Function</th>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th>Function</th>
 <th>Returns</th>
-</tr></thead><tbody><tr class="odd"><td><code>dgchildren(dggs, cells)</code></td>
+</tr></thead><tbody><tr><td><code>dgchildren(dggs, cells)</code></td>
 <td>Data frame: <code>seqnum</code> (parent at <code>res</code>) + <code>child</code> (at <code>res+1</code>)</td>
-</tr><tr class="even"><td><code>dgparent(dggs, cells)</code></td>
+</tr><tr><td><code>dgparent(dggs, cells)</code></td>
 <td>Data frame: <code>seqnum</code> (child at <code>res</code>) + <code>parent</code> (at <code>res-1</code>)</td>
 </tr></tbody></table><p><strong>C++ path:</strong> - <code>dgchildren</code> → <code>GetChildren()</code> constructs a <code>GridThing</code> with <code>res+1</code> (so <code>idggs</code> covers <code>res+2</code> levels) → <code>GridThing::getChildrenAt(seqnum, parentRes)</code> → <code>DgDiscTopoRFS::setAllChildren(parentRes, loc, vec)</code> → <code>DgHexIDGGS::setAddAllChildren()</code> (interior + boundary children). - <code>dgparent</code> → <code>GetParent()</code> → <code>GridThing::getParentAt(seqnum, childRes)</code> → <code>DgDiscTopoRFS::setParents(childRes, loc, vec)</code> → <code>DgHexIDGGS::setAddParents()</code>.</p>
 <p><strong>Design note — boundary children:</strong> <code>setAddAllChildren</code> returns interior children (1 per aperture-3 parent, 3 for aperture-4) plus boundary children shared with neighboring cells. A boundary child’s primary parent (as returned by <code>setParents</code>) may be a neighbor, not the original parent. The R-level test reflects this: <code>any(prnt$parent == parent_cell)</code> rather than <code>all(...)</code>.</p>

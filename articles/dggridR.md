@@ -101,31 +101,31 @@ The following table shows the number of cells, their area, and
 statistics regarding the spacing of their center nodes for the ISEA3H
 grid type.
 
-| Res | Number of Cells | Cell Area (km^2) |         Min |         Max |        Mean |       Std |
-|----:|----------------:|-----------------:|------------:|------------:|------------:|----------:|
-|   0 |              12 | 51,006,562.17241 |             |             |             |           |
-|   1 |              32 | 17,002,187.39080 | 4,156.18000 | 4,649.10000 | 4,320.49000 | 233.01400 |
-|   2 |              92 |  5,667,395.79693 | 2,324.81000 | 2,692.72000 | 2,539.69000 | 139.33400 |
-|   3 |             272 |  1,889,131.93231 | 1,363.56000 | 1,652.27000 | 1,480.02000 |  89.39030 |
-|   4 |             812 |    629,710.64410 |   756.96100 |   914.27200 |   855.41900 |  52.14810 |
-|   5 |           2,432 |    209,903.54803 |   453.74800 |   559.23900 |   494.95900 |  29.81910 |
-|   6 |           7,292 |     69,967.84934 |   248.80400 |   310.69300 |   285.65200 |  17.84470 |
-|   7 |          21,872 |     23,322.61645 |   151.22100 |   187.55000 |   165.05800 |   9.98178 |
-|   8 |          65,612 |      7,774.20548 |    82.31100 |   104.47000 |    95.26360 |   6.00035 |
-|   9 |         196,832 |      2,591.40183 |    50.40600 |    63.00970 |    55.02260 |   3.33072 |
-|  10 |         590,492 |        863.80061 |    27.33230 |    35.01970 |    31.75960 |   2.00618 |
-|  11 |       1,771,472 |        287.93354 |    16.80190 |    21.09020 |    18.34100 |   1.11045 |
-|  12 |       5,314,412 |         95.97785 |     9.09368 |    11.70610 |    10.58710 |   0.66942 |
-|  13 |      15,943,232 |         31.99262 |     5.60065 |     7.04462 |     6.11367 |   0.37016 |
-|  14 |      47,829,692 |         10.66421 |     3.02847 |     3.90742 |     3.52911 |   0.22322 |
-|  15 |     143,489,072 |          3.55473 |     1.86688 |     2.35058 |     2.03789 |   0.12339 |
-|  16 |     430,467,212 |          1.18491 |     1.00904 |     1.30335 |     1.17638 |   0.07442 |
-|  17 |   1,291,401,632 |          0.39497 |     0.62229 |     0.78391 |     0.67930 |   0.04113 |
-|  18 |   3,874,204,892 |          0.13166 |     0.33628 |     0.43459 |     0.39213 |   0.02481 |
-|  19 |  11,622,614,672 |          0.04389 |     0.20743 |     0.26137 |     0.22643 |   0.01371 |
-|  20 |  34,867,844,012 |          0.01463 |     0.11208 |     0.14489 |     0.13071 |   0.00827 |
+| Res | Number of Cells | Cell Area (km^2) | Min | Max | Mean | Std |
+|---:|---:|---:|---:|---:|---:|---:|
+| 0 | 12 | 51,006,562.17241 |  |  |  |  |
+| 1 | 32 | 17,002,187.39080 | 4,156.18000 | 4,649.10000 | 4,320.49000 | 233.01400 |
+| 2 | 92 | 5,667,395.79693 | 2,324.81000 | 2,692.72000 | 2,539.69000 | 139.33400 |
+| 3 | 272 | 1,889,131.93231 | 1,363.56000 | 1,652.27000 | 1,480.02000 | 89.39030 |
+| 4 | 812 | 629,710.64410 | 756.96100 | 914.27200 | 855.41900 | 52.14810 |
+| 5 | 2,432 | 209,903.54803 | 453.74800 | 559.23900 | 494.95900 | 29.81910 |
+| 6 | 7,292 | 69,967.84934 | 248.80400 | 310.69300 | 285.65200 | 17.84470 |
+| 7 | 21,872 | 23,322.61645 | 151.22100 | 187.55000 | 165.05800 | 9.98178 |
+| 8 | 65,612 | 7,774.20548 | 82.31100 | 104.47000 | 95.26360 | 6.00035 |
+| 9 | 196,832 | 2,591.40183 | 50.40600 | 63.00970 | 55.02260 | 3.33072 |
+| 10 | 590,492 | 863.80061 | 27.33230 | 35.01970 | 31.75960 | 2.00618 |
+| 11 | 1,771,472 | 287.93354 | 16.80190 | 21.09020 | 18.34100 | 1.11045 |
+| 12 | 5,314,412 | 95.97785 | 9.09368 | 11.70610 | 10.58710 | 0.66942 |
+| 13 | 15,943,232 | 31.99262 | 5.60065 | 7.04462 | 6.11367 | 0.37016 |
+| 14 | 47,829,692 | 10.66421 | 3.02847 | 3.90742 | 3.52911 | 0.22322 |
+| 15 | 143,489,072 | 3.55473 | 1.86688 | 2.35058 | 2.03789 | 0.12339 |
+| 16 | 430,467,212 | 1.18491 | 1.00904 | 1.30335 | 1.17638 | 0.07442 |
+| 17 | 1,291,401,632 | 0.39497 | 0.62229 | 0.78391 | 0.67930 | 0.04113 |
+| 18 | 3,874,204,892 | 0.13166 | 0.33628 | 0.43459 | 0.39213 | 0.02481 |
+| 19 | 11,622,614,672 | 0.04389 | 0.20743 | 0.26137 | 0.22643 | 0.01371 |
+| 20 | 34,867,844,012 | 0.01463 | 0.11208 | 0.14489 | 0.13071 | 0.00827 |
 
-ISEA3H grid cell characteristics.
+ISEA3H grid cell characteristics. {.table}
 
 ## How do I use it?
 
@@ -183,6 +183,7 @@ Additionally, the example demonstrates how to get the center coordinates
 of the cells.
 
 ``` r
+
 #Include libraries
 library(dggridR)
 library(collapse)
@@ -224,6 +225,7 @@ trying to plot a sphere on a flat surface! And that’s what would happen
 to your data if you didn’t use this package :-)
 
 ``` r
+
 #Plot everything on a flat map
 
 # Handle cells that cross 180 degrees
@@ -242,6 +244,7 @@ You can also write out a KML file with your data included for displaying
 in, say, Google Earth:
 
 ``` r
+
 library(sf)
 
 #Get the grid cell boundaries for the whole Earth using this dggs in a form
@@ -264,6 +267,7 @@ conceptually simplest is to choose `N` uniformly distributed lat-long
 pairs and retrieve their associated grid cells:
 
 ``` r
+
 #Include libraries
 library(dggridR)
 
@@ -303,6 +307,7 @@ gridfilename <- dgcellstogrid(dggs,df$cell)
 The resulting distribution of cells appears as follows:
 
 ``` r
+
 #Get the grid in a more convenient format
 grid <- dgcellstogrid(dggs,df$cell)
 grid <- st_wrap_dateline(grid, options = c("WRAPDATELINE=YES","DATELINEOFFSET=180"), quiet = TRUE)
@@ -328,6 +333,7 @@ easiest way to do this is to note that grid cells are labeled from 1 to
 Therefore, we can sample cell ids and generate a grid accordingly.
 
 ``` r
+
 #Include libraries
 library(dggridR)
 
@@ -354,6 +360,7 @@ grid    <- dgcellstogrid(dggs,cells)           #Get grid
 The resulting distribution of cells appears as follows:
 
 ``` r
+
 #Get the grid in a more convenient format
 grid <- dgcellstogrid(dggs,df$cell)
 grid <- st_wrap_dateline(grid, options = c("WRAPDATELINE=YES","DATELINEOFFSET=180"), quiet = TRUE)
@@ -377,6 +384,7 @@ this, the grid generation commands include the `savegrid` argument, as
 demonstrated below.
 
 ``` r
+
 library(dggridR)
 #Generate a global grid whose cells are ~100,000 miles^2
 dggs         <- dgconstruct(area=100000, metric=FALSE, resround='nearest')
@@ -387,6 +395,7 @@ gridfilename <- dgearthgrid(dggs,savegrid=tempfile())
 ### Get a grid that covers South Africa
 
 ``` r
+
 library(dggridR)
 
 #Generate a dggs specifying an intercell spacing of ~25 miles
@@ -419,6 +428,7 @@ skips the geometry and returns a plain data frame of per-cell statistics
 (count, mean, total).
 
 ``` r
+
 library(dggridR)
 
 data(dgquakes)
@@ -433,6 +443,7 @@ wrapped   <- st_wrap_dateline(grid, options = c("WRAPDATELINE=YES","DATELINEOFFS
 ```
 
 ``` r
+
 ggplot() +
     geom_polygon(data=countries, aes(x=long, y=lat, group=group), fill=NA, color="black") +
     geom_sf(data=wrapped, aes(fill=count), color=alpha("white", 0.4)) +
@@ -447,6 +458,7 @@ is useful when you only need the aggregated numbers rather than the
 geometry:
 
 ``` r
+
 bins <- dgbin_points(dggs, dgquakes$lon, dgquakes$lat, output_count = TRUE)
 head(bins)
 ```
@@ -466,6 +478,7 @@ returns the 6 adjacent cells for each hexagonal cell (not supported for
 triangular grids).
 
 ``` r
+
 library(dggridR)
 
 dggs <- dgconstruct(res = 2, show_info = FALSE)
@@ -480,6 +493,7 @@ grid$role <- ifelse(grid$seqnum == center_cell, "centre", "neighbour")
 ```
 
 ``` r
+
 ggplot() +
     geom_sf(data=grid, aes(fill=role), color="white") +
     scale_fill_manual(values = c(centre = "#E41A1C", neighbour = "#377EB8")) +
@@ -498,6 +512,7 @@ returns the coarser-resolution cell that contains each input cell. Both
 require a hexagonal grid.
 
 ``` r
+
 library(dggridR)
 
 dggs_parent <- dgconstruct(res = 3, show_info = FALSE)
@@ -512,6 +527,7 @@ grid_child  <- dgcellstogrid(dggs_child, chld$child)
 ```
 
 ``` r
+
 ggplot() +
     geom_sf(data=grid_child,  fill=alpha("#377EB8", 0.5), color="white") +
     geom_sf(data=grid_parent, fill=NA, color="#E41A1C", linewidth=1.2) +
@@ -526,6 +542,7 @@ confirms that interior children map back to their parent (boundary
 children may be shared with a neighbouring cell):
 
 ``` r
+
 prnt <- dgparent(dggs_child, chld$child)
 head(prnt)
 ```
@@ -550,6 +567,7 @@ intermediate points and produce smoother curves when the cells are
 displayed in a curved projection.
 
 ``` r
+
 library(dggridR)
 
 dggs <- dgconstruct(res = 2, show_info = FALSE)
@@ -558,6 +576,7 @@ g5   <- dgearthgrid(dggs, densify = 5)  # 5 extra vertices per edge
 ```
 
 ``` r
+
 # Vertex counts increase substantially with densification
 c(
   sparse = sum(lengths(lapply(sf::st_geometry(g0), sf::st_coordinates))),
@@ -579,6 +598,7 @@ sensitivity analyses or Monte Carlo studies. Use
 reproducibility.
 
 ``` r
+
 library(dggridR)
 
 set.seed(42)
@@ -587,6 +607,7 @@ gr     <- dgearthgrid(dggs_r)
 ```
 
 ``` r
+
 countries <- map_data("world")
 ggplot() +
     geom_polygon(data=countries, aes(x=long, y=lat, group=group), fill=NA, color="black") +

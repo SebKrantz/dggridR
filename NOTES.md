@@ -142,25 +142,25 @@ coasts %\>% fortify()
 
 dggs \<- dgconstruct(res=3)
 
-xy \<- dgGEO_to_PROJTRI(dggs, coasts$long,coasts$lat) xy \<-
-as.data.frame(xy) xy$tnum < - as.factor(xy$tnum) xy$group < - coasts$id
-ggplot(data=xy, aes(x=tx,y=ty,group=group)) + geom_polygon(fill=NA,
-colour=“black”, size=1) + facet_wrap(~tnum)+ ggtitle(‘dggridR v2.0.1
-PROJTRI’)
+xy \<- dgGEO_to_PROJTRI(dggs, coasts$`long, coasts`$lat) xy \<-
+as.data.frame(xy) xy$`tnum <- as.factor(xy`$tnum)
+xy$`group <- coasts`$id ggplot(data=xy, aes(x=tx,y=ty,group=group)) +
+geom_polygon(fill=NA, colour=“black”, size=1) + facet_wrap(~tnum)+
+ggtitle(‘dggridR v2.0.1 PROJTRI’)
 
-xy \<- dgGEO_to_Q2DD(dggs, coasts$long,coasts$lat) xy \<-
-as.data.frame(xy) xy$quad < - as.factor(xy$quad) xy$group < - coasts$id
-ggplot(data=xy, aes(x=qx,y=qy,group=group)) + geom_polygon(fill=NA,
-colour=“black”, size=1) + facet_wrap(~quad)+ ggtitle(‘dggridR v2.0.1
-Q2DD’)
+xy \<- dgGEO_to_Q2DD(dggs, coasts$`long, coasts`$lat) xy \<-
+as.data.frame(xy) xy$`quad <- as.factor(xy`$quad)
+xy$`group <- coasts`$id ggplot(data=xy, aes(x=qx,y=qy,group=group)) +
+geom_polygon(fill=NA, colour=“black”, size=1) + facet_wrap(~quad)+
+ggtitle(‘dggridR v2.0.1 Q2DD’)
 
-xy \<- dgGEO_to_Q2DI(dggs, coasts$long,coasts$lat) xy \<-
-as.data.frame(xy) xy$quad < - as.factor(xy$quad) xy$group < - coasts$id
-ggplot(data=xy, aes(x=i,y=j,group=quad)) + geom_polygon(fill=NA,
-colour=“black”, size=1) + facet_wrap(~quad) + ggtitle(‘dggridR v2.0.1
-Q2DI’)
+xy \<- dgGEO_to_Q2DI(dggs, coasts$`long, coasts`$lat) xy \<-
+as.data.frame(xy) xy$`quad <- as.factor(xy`$quad)
+xy$`group <- coasts`$id ggplot(data=xy, aes(x=i,y=j,group=quad)) +
+geom_polygon(fill=NA, colour=“black”, size=1) + facet_wrap(~quad) +
+ggtitle(‘dggridR v2.0.1 Q2DI’)
 
-xy \<- dgGEO_to_PLANE(dggs, coasts$long,coasts$lat) xy \<-
+xy \<- dgGEO_to_PLANE(dggs, coasts$`long, coasts`$lat) xy \<-
 as.data.frame(xy) ggplot(data=xy, aes(x=px,y=py)) + geom_point(fill=NA,
 colour=“black”, size=0.05) + ggtitle(‘dggridR v2.0.1 Plane’)+
 coord_fixed()

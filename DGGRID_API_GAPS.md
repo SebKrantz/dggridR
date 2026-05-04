@@ -15,14 +15,14 @@ R.
 DGGRID has six `dggrid_operation` modes. The R package partially covers
 two of them.
 
-| DGGRID Mode                 | R Coverage                                                                                                                                                                                                                                                                                                                                                                                                   |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `GENERATE_GRID`             | Partial — whole-earth (`dgearthgrid`) and by-SEQNUM (`dgcellstogrid`). Region clipping uses an approximate point-sampling workaround, not native polygon intersection.                                                                                                                                                                                                                                       |
+| DGGRID Mode | R Coverage |
+|----|----|
+| `GENERATE_GRID` | Partial — whole-earth (`dgearthgrid`) and by-SEQNUM (`dgcellstogrid`). Region clipping uses an approximate point-sampling workaround, not native polygon intersection. |
 | `GENERATE_GRID_FROM_POINTS` | **None.** Given a set of lon/lat points, generate the cells that contain them and optionally return per-cell point counts. The R user must call [`dgGEO_to_SEQNUM()`](https://sebkrantz.github.io/dggridR/reference/dgGEO_to_SEQNUM.md) + [`dgcellstogrid()`](https://sebkrantz.github.io/dggridR/reference/dgcellstogrid.md) separately; this loses the native `output_count` field and GDAL input support. |
-| `BIN_POINT_VALS`            | **None.** Bins floating-point values associated with lon/lat points into DGG cells, outputting per-cell mean (`output_mean`), count (`output_count`), and/or total (`output_total`). Fundamental for gridded aggregation workflows.                                                                                                                                                                          |
-| `BIN_POINT_PRESENCE`        | **None.** Presence/absence binning across multiple input classes. Each cell receives a binary vector indicating which classes appear in it, plus optional count and class-count fields.                                                                                                                                                                                                                      |
-| `TRANSFORM_POINTS`          | Full — all 30 pairwise conversions between GEO, SEQNUM, Q2DI, Q2DD, PROJTRI, PLANE are exposed via `cwrapper.R`. HIERNDX input/output address type is not exposed (see §4).                                                                                                                                                                                                                                  |
-| `OUTPUT_STATS`              | Partial — [`dggetres()`](https://sebkrantz.github.io/dggridR/reference/dggetres.md) returns the same cell-count/area/spacing/CLS table, but uses the C++ `GridStat_*` functions directly, not the DGGRID metafile pipeline. No way to query stats for SEQUENCE/MIXED43 grids (see §2).                                                                                                                       |
+| `BIN_POINT_VALS` | **None.** Bins floating-point values associated with lon/lat points into DGG cells, outputting per-cell mean (`output_mean`), count (`output_count`), and/or total (`output_total`). Fundamental for gridded aggregation workflows. |
+| `BIN_POINT_PRESENCE` | **None.** Presence/absence binning across multiple input classes. Each cell receives a binary vector indicating which classes appear in it, plus optional count and class-count fields. |
+| `TRANSFORM_POINTS` | Full — all 30 pairwise conversions between GEO, SEQNUM, Q2DI, Q2DD, PROJTRI, PLANE are exposed via `cwrapper.R`. HIERNDX input/output address type is not exposed (see §4). |
+| `OUTPUT_STATS` | Partial — [`dggetres()`](https://sebkrantz.github.io/dggridR/reference/dggetres.md) returns the same cell-count/area/spacing/CLS table, but uses the C++ `GridStat_*` functions directly, not the DGGRID metafile pipeline. No way to query stats for SEQUENCE/MIXED43 grids (see §2). |
 
 ------------------------------------------------------------------------
 
@@ -195,11 +195,11 @@ downstream sf/s2 handling; the engine default (WRAP) is always used.
 
 `proj_datum` controls the earth model used for cell-area calculations:
 
-| Value                   | Description                                              |
-|-------------------------|----------------------------------------------------------|
+| Value | Description |
+|----|----|
 | `WGS84_AUTHALIC_SPHERE` | Default — equal-area sphere matching WGS84 (R uses this) |
-| `WGS84_MEAN_SPHERE`     | Mean-radius WGS84 sphere                                 |
-| `CUSTOM_SPHERE`         | User-specified radius via `proj_datum_radius` (km)       |
+| `WGS84_MEAN_SPHERE` | Mean-radius WGS84 sphere |
+| `CUSTOM_SPHERE` | User-specified radius via `proj_datum_radius` (km) |
 
 R always uses the authalic sphere with no way to change it, which
 affects cell-area computations for applications requiring a different
@@ -290,12 +290,12 @@ records what changed, how it was done, and what limitations remain.
 
 **Status: Implemented.**
 
-| Item                          | Change                                                                                                                                                                                                                              |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Aperture 7 (ISEA7H, FULLER7H) | `dgconstruct(aperture=7)` accepted; [`dgverify()`](https://sebkrantz.github.io/dggridR/reference/dgverify.md) allows `aperture ∈ {3,4,7}`                                                                                           |
-| MIXED43 (ISEA43H, FULLER43H)  | `dgconstruct(aperture_type='MIXED43', num_aperture_4_res=N)`                                                                                                                                                                        |
-| C++ bridge                    | `DgParams` extended with `isMixed43` / `numAp4`; threaded through `GridThing`, both generators, `Transformer`, and all 30 generated coordinate-conversion functions                                                                 |
-| `func_gen.py`                 | `proj_arg` extended with `("bool","isMixed43","FALSE")` and `("int","numAp4","0L")`; `dgproj_args` generation uses null-safe accessors for backward compatibility; output path bug fixed (`../../R/cwrapper.R` → `../R/cwrapper.R`) |
+| Item | Change |
+|----|----|
+| Aperture 7 (ISEA7H, FULLER7H) | `dgconstruct(aperture=7)` accepted; [`dgverify()`](https://sebkrantz.github.io/dggridR/reference/dgverify.md) allows `aperture ∈ {3,4,7}` |
+| MIXED43 (ISEA43H, FULLER43H) | `dgconstruct(aperture_type='MIXED43', num_aperture_4_res=N)` |
+| C++ bridge | `DgParams` extended with `isMixed43` / `numAp4`; threaded through `GridThing`, both generators, `Transformer`, and all 30 generated coordinate-conversion functions |
+| `func_gen.py` | `proj_arg` extended with `("bool","isMixed43","FALSE")` and `("int","numAp4","0L")`; `dgproj_args` generation uses null-safe accessors for backward compatibility; output path bug fixed (`../../R/cwrapper.R` → `../R/cwrapper.R`) |
 
 **Remaining gaps:** - Sequence aperture (`aperture_type = SEQUENCE`,
 preset PLANETRISK) — not implemented; requires `DgApSeq` string
@@ -312,10 +312,10 @@ special cell-label numbering) — not implemented. -
 
 **Status: Implemented in pure R using existing bridge calls.**
 
-| Function                                                                        | Wraps                     | Notes                                                                                                                                                                                                                             |
-|---------------------------------------------------------------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dgpoints_to_cells(dggs, lon, lat, return_count)`                               | GENERATE_GRID_FROM_POINTS | Calls [`dgGEO_to_SEQNUM()`](https://sebkrantz.github.io/dggridR/reference/dgGEO_to_SEQNUM.md) + [`dgcellstogrid()`](https://sebkrantz.github.io/dggridR/reference/dgcellstogrid.md); returns sf grid with optional `count` column |
-| `dgbin_points(dggs, lon, lat, values, output_count, output_mean, output_total)` | BIN_POINT_VALS            | Pure collapse aggregation; returns a plain data frame (no geometry)                                                                                                                                                               |
+| Function | Wraps | Notes |
+|----|----|----|
+| `dgpoints_to_cells(dggs, lon, lat, return_count)` | GENERATE_GRID_FROM_POINTS | Calls [`dgGEO_to_SEQNUM()`](https://sebkrantz.github.io/dggridR/reference/dgGEO_to_SEQNUM.md) + [`dgcellstogrid()`](https://sebkrantz.github.io/dggridR/reference/dgcellstogrid.md); returns sf grid with optional `count` column |
+| `dgbin_points(dggs, lon, lat, values, output_count, output_mean, output_total)` | BIN_POINT_VALS | Pure collapse aggregation; returns a plain data frame (no geometry) |
 
 **Remaining gaps:** - GDAL vector file input for points — not supported
 (R-only path). - `BIN_POINT_PRESENCE` (multi-class presence/absence
@@ -349,10 +349,10 @@ been tested.
 **Status: Implemented via `DgDiscTopoRFS` public API (no HIERNDX address
 type).**
 
-| Function                  | Returns                                                       |
-|---------------------------|---------------------------------------------------------------|
+| Function | Returns |
+|----|----|
 | `dgchildren(dggs, cells)` | Data frame: `seqnum` (parent at `res`) + `child` (at `res+1`) |
-| `dgparent(dggs, cells)`   | Data frame: `seqnum` (child at `res`) + `parent` (at `res-1`) |
+| `dgparent(dggs, cells)` | Data frame: `seqnum` (child at `res`) + `parent` (at `res-1`) |
 
 **C++ path:** - `dgchildren` → `GetChildren()` constructs a `GridThing`
 with `res+1` (so `idggs` covers `res+2` levels) →
@@ -403,6 +403,7 @@ values will produce a C++ error).
 orientation:
 
 ``` r
+
 pole_lat_deg <- asin(runif(1, -1, 1)) * 180 / pi   # uniform on sphere
 pole_lon_deg <- runif(1, -180, 180)
 azimuth_deg  <- runif(1, 0, 360)

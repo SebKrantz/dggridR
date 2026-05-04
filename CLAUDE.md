@@ -12,6 +12,7 @@ Earth’s surface. It bridges R to the DGGRID C++ engine via Rcpp.
 ## Common Commands
 
 ``` r
+
 # Install package from source (run in R)
 devtools::install()
 
