@@ -23,7 +23,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/r-barnes/dggridR/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/r-barnes/dggridR/blob/v4.1.0/DESCRIPTION)
 
 Barnes R, Sahr K (2026). *dggridR: Discrete Global Grids*. R package
 version 4.1.0, <https://github.com/r-barnes/dggridR/>.
