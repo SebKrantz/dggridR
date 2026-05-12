@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dggridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,9 +30,14 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/r-barnes/dggridR/blob/v4.1.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/r-barnes/dggridR/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="4.1.1" id="dggridr-411">dggridR 4.1.1<a class="anchor" aria-label="anchor" href="#dggridr-411"></a></h2>
+<ul><li>Fixed segmentation fault on Debian/Linux during package loading caused by <code>RCPP_USE_GLOBAL_ROSTREAM</code> global initialization in <code>RcppExports.cpp</code>.</li>
+<li>Fixed integer truncation warnings by replacing C <code><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs()</a></code> with <code>std::abs()</code> for <code>long long</code> arguments in DGGRID headers.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="4.1.0" id="dggridr-410">dggridR 4.1.0<a class="anchor" aria-label="anchor" href="#dggridr-410"></a></h2>
 <ul><li>

@@ -1,5 +1,14 @@
 # Changelog
 
+## dggridR 4.1.1
+
+- Fixed segmentation fault on Debian/Linux during package loading caused
+  by `RCPP_USE_GLOBAL_ROSTREAM` global initialization in
+  `RcppExports.cpp`.
+- Fixed integer truncation warnings by replacing C
+  [`abs()`](https://rdrr.io/r/base/MathFun.html) with `std::abs()` for
+  `long long` arguments in DGGRID headers.
+
 ## dggridR 4.1.0
 
 - [`dgconstruct()`](https://sebkrantz.github.io/dggridR/reference/dgconstruct.md)
