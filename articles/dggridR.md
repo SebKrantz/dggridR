@@ -636,7 +636,7 @@ corresponding to the grid resolution):
 ## Credits
 
 This R package was originally developed by Richard Barnes
-(<https://rbarnes.org/>) and is currently maintained by Sebastian
+(<https://richard.science/>) and is currently maintained by Sebastian
 Krantz.
 
 The dggrid conversion software was developed predominantly by Kevin Sahr
