@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dggridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,15 +34,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="4.1.4" id="dggridr-414">dggridR 4.1.4<a class="anchor" aria-label="anchor" href="#dggridr-414"></a></h2>
-<ul><li>Fixed segmentation fault on Debian/Linux during package loading caused by static initialization of <code>DgConverterBase::traceStream_</code> with <code>&amp;dgcout</code> (<code>Rcpp::Rcout</code>) before R is ready during <code><a href="https://rdrr.io/r/base/dynload.html" class="external-link">dyn.load()</a></code>.</li>
-<li>Restored disabled <code>RCPP_USE_GLOBAL_ROSTREAM</code> in <code>RcppExports.cpp</code> and added <code>src/Makevars</code> with <code>-URCPP_USE_GLOBAL_ROSTREAM</code> to prevent regressions from <code><a href="https://rdrr.io/pkg/Rcpp/man/compileAttributes.html" class="external-link">Rcpp::compileAttributes()</a></code>.</li>
-<li>Removed the <code>DgConverterBase</code> fallback reference to <code>dgcout</code> so tracing no longer pulls C++ iostream output by default.</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="4.1.1" id="dggridr-411">dggridR 4.1.1<a class="anchor" aria-label="anchor" href="#dggridr-411"></a></h2>
-<ul><li>Fixed segmentation fault on Debian/Linux during package loading caused by <code>RCPP_USE_GLOBAL_ROSTREAM</code> global initialization in <code>RcppExports.cpp</code>.</li>
+<h2 class="pkg-version" data-toc-text="4.1.1-4.1.6" id="dggridr-411-416">dggridR 4.1.1-4.1.6<a class="anchor" aria-label="anchor" href="#dggridr-411-416"></a></h2>
+<ul><li>Fixed segmentation fault on Debian/Linux during <code><a href="https://rdrr.io/r/base/dynload.html" class="external-link">dyn.load()</a></code>: static initialization of <code>Rcpp::Rostream</code> (<code>Rcout</code>/<code>Rcerr</code>) and other C++ iostream objects before R is ready. With GCC 16’s libstdc++ on Debian, constructing hundreds of <code>std::ostream</code>-derived objects at load time triggered a NULL pointer dereference. The definitive fix was removing <code>#include &lt;Rcpp.h&gt;</code> from <code>DgBase.h</code>, which is transitively included by nearly every translation unit (~100+). Retained mitigations from earlier attempts: disable <code>RCPP_USE_GLOBAL_ROSTREAM</code> in <code>RcppExports.cpp</code> and enforce via <code>src/Makevars</code> (<code>-URCPP_USE_GLOBAL_ROSTREAM</code>); remove <code>DgConverterBase::traceStream_</code> and its <code>dgcout</code> fallback; exclude <code>test.cpp</code> from the package shared-library build.</li>
+<li>Fixed install warnings from signed/unsigned comparisons in <code>DgDiscRFSGrids.h</code> and <code>DgZ3StringRF.cpp</code>.</li>
+<li>Guarded MSVC-only <code>#pragma comment(lib, ...)</code> in <code>safileio.c</code> to avoid GCC unknown pragma warnings.</li>
 <li>Fixed integer truncation warnings by replacing C <code><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs()</a></code> with <code>std::abs()</code> for <code>long long</code> arguments in DGGRID headers.</li>
+<li>Added durable patch steps in <code>update_from_upstream.sh</code> so these fixes survive source regeneration.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="4.1.0" id="dggridr-410">dggridR 4.1.0<a class="anchor" aria-label="anchor" href="#dggridr-410"></a></h2>
