@@ -26,12 +26,12 @@ Source:
 [`DESCRIPTION`](https://github.com/r-barnes/dggridR/blob/master/DESCRIPTION)
 
 Barnes R, Sahr K (2026). *dggridR: Discrete Global Grids*. R package
-version 4.1.6, <https://github.com/r-barnes/dggridR/>.
+version 4.1.7, <https://github.com/r-barnes/dggridR/>.
 
     @Manual{,
       title = {dggridR: Discrete Global Grids},
       author = {Richard Barnes and Kevin Sahr},
       year = {2026},
-      note = {R package version 4.1.6},
+      note = {R package version 4.1.7},
       url = {https://github.com/r-barnes/dggridR/},
     }

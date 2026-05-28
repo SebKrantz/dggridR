@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">dggridR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">4.1.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,12 +34,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="4.1.1-4.1.6" id="dggridr-411-416">dggridR 4.1.1-4.1.6<a class="anchor" aria-label="anchor" href="#dggridr-411-416"></a></h2>
-<ul><li>Fixed segmentation fault on Debian/Linux during <code><a href="https://rdrr.io/r/base/dynload.html" class="external-link">dyn.load()</a></code>: static initialization of <code>Rcpp::Rostream</code> (<code>Rcout</code>/<code>Rcerr</code>) and other C++ iostream objects before R is ready. With GCC 16’s libstdc++ on Debian, constructing hundreds of <code>std::ostream</code>-derived objects at load time triggered a NULL pointer dereference. The definitive fix was removing <code>#include &lt;Rcpp.h&gt;</code> from <code>DgBase.h</code>, which is transitively included by nearly every translation unit (~100+). Retained mitigations from earlier attempts: disable <code>RCPP_USE_GLOBAL_ROSTREAM</code> in <code>RcppExports.cpp</code> and enforce via <code>src/Makevars</code> (<code>-URCPP_USE_GLOBAL_ROSTREAM</code>); remove <code>DgConverterBase::traceStream_</code> and its <code>dgcout</code> fallback; exclude <code>test.cpp</code> from the package shared-library build.</li>
-<li>Fixed install warnings from signed/unsigned comparisons in <code>DgDiscRFSGrids.h</code> and <code>DgZ3StringRF.cpp</code>.</li>
-<li>Guarded MSVC-only <code>#pragma comment(lib, ...)</code> in <code>safileio.c</code> to avoid GCC unknown pragma warnings.</li>
-<li>Fixed integer truncation warnings by replacing C <code><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs()</a></code> with <code>std::abs()</code> for <code>long long</code> arguments in DGGRID headers.</li>
-<li>Added durable patch steps in <code>update_from_upstream.sh</code> so these fixes survive source regeneration.</li>
+<h2 class="pkg-version" data-toc-text="4.1.1-4.1.7" id="dggridr-411-417">dggridR 4.1.1-4.1.7<a class="anchor" aria-label="anchor" href="#dggridr-411-417"></a></h2>
+<ul><li>
+<p>Continuing fix for the Debian/Linux <code><a href="https://rdrr.io/r/base/dynload.html" class="external-link">dyn.load()</a></code> segfault (<code>address (nil), cause 'memory not mapped'</code>) seen only on the CRAN pretest box (R-devel built with <code>gcc-16</code>, libstdc++-16, <code>-D_FORTIFY_SOURCE=3</code>). The R Extensions manual (§5.6) is explicit that using C++ I/O in shared libraries loaded by R is best avoided: “Examples have been seen where merely loading a DLL that contained calls to C++ I/O upset R’s own C I/O.” Earlier releases eliminated <code>#include &lt;Rcpp.h&gt;</code> from <code>DgBase.h</code> (used by ~100 translation units), disabled <code>RCPP_USE_GLOBAL_ROSTREAM</code>, and routed <code>dgcout</code> / <code>dgcerr</code> through <code>Rprintf</code> / <code>REprintf</code> instead of <code>Rcpp::Rcout</code> / <code>Rcpp::Rcerr</code>. That still left file-scope <code>static Rcpp::Rostream&lt;...&gt; Rcout/Rcerr</code> objects in every TU that included <code>&lt;Rcpp.h&gt;</code> (Rcpp declares them inside <code>Rcpp/iostream/Rstreambuf.h</code>). Their <code>std::ostream(streambuf*)</code> constructors run inside the dynamic loader before R has finished initialising the .so, and on this specific toolchain they trip a NULL dereference during libstdc++ locale init. 4.1.7 removes them from the .so entirely:</p>
+<ul><li>New <code>src/dggridR_overrides/Rcpp/iostream/Rstreambuf.h</code> shadows the upstream Rcpp header via <code>PKG_CPPFLAGS = -IdggridR_overrides</code> in <code>src/Makevars</code>. The override keeps the <code>Rcpp::Rstreambuf</code> / <code>Rcpp::Rostream</code> template declarations that <code>Rcpp/routines.h</code> needs to compile its inline <code>Rcpp_cout_get()</code> / <code>Rcpp_cerr_get()</code> callable lookups, but drops the two file-scope <code>static Rostream&lt;...&gt;</code> instances. <code>nm</code> on the resulting <code>dggridR.so</code> shows zero <code>Rostream</code>-related vtable, RTTI, or static instance symbols (down from a full set in 4.1.6).</li>
+<li>Every header that included <code>&lt;iostream&gt;</code> purely to obtain <code>std::ostream</code> / <code>std::endl</code> for <code>operator&lt;&lt;</code> declarations now includes <code>&lt;ostream&gt;</code> instead. This removes libstdc++’s <code>std::__ioinit</code> static initialiser from those translation units, dropping yet another category of load-time iostream construction.</li>
+<li>Retained mitigations from 4.1.6: <code>DgBase.cpp</code> is <code>&lt;Rcpp.h&gt;</code>-free (custom <code>Rprintf</code>-backed <code>std::streambuf</code> for <code>dgcout</code> / <code>dgcerr</code>); <code>RcppExports.cpp</code> is <code>&lt;Rcpp.h&gt;</code>-free; <code>copy_to_src/dglib.cpp</code> is <code>&lt;Rcpp.h&gt;</code>-free. Only <code>Rwrapper.cpp</code> and <code>Rwrapper.h</code> still include <code>&lt;Rcpp.h&gt;</code> (because they legitimately need <code>Rcpp::List</code>, <code>Rcpp::NumericVector</code>, and <code>RCPP_MODULE</code>), and with the Rstreambuf override above they no longer drag any <code>Rcpp::Rostream</code> static instances into the .so.</li>
+</ul></li>
+<li>
+<p>Persisted the new patches in <code>update_from_upstream.sh</code> so they survive future syncs from the DGGRID submodule.</p>
+<p>After these changes <code>nm dggridR.so</code> shows the minimum static-initialiser footprint compatible with Rcpp modules: a handful of <code>__GLOBAL__sub_I_*</code> functions from the DGGRID engine’s existing <code>const std::string</code> / <code>const DgDVec2D</code> / <code>const DgIcosaTri[]</code> etc. file-scope initialisers (which have been in the upstream code for years and pose no load-time risk), and <strong>zero</strong> <code>Rcpp::Rostream</code> / <code>Rcpp::Rstreambuf</code> symbols anywhere in the .so.</p>
+</li>
+<li><p>Fixed install warnings from signed/unsigned comparisons in <code>DgDiscRFSGrids.h</code> and <code>DgZ3StringRF.cpp</code>.</p></li>
+<li><p>Guarded MSVC-only <code>#pragma comment(lib, ...)</code> in <code>safileio.c</code> to avoid GCC unknown pragma warnings.</p></li>
+<li><p>Fixed integer truncation warnings by replacing C <code><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs()</a></code> with <code>std::abs()</code> for <code>long long</code> arguments in DGGRID headers.</p></li>
+<li><p>Added durable patch steps in <code>update_from_upstream.sh</code> so these fixes survive source regeneration.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="4.1.0" id="dggridr-410">dggridR 4.1.0<a class="anchor" aria-label="anchor" href="#dggridr-410"></a></h2>
